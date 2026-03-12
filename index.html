@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ouija Notepad & Virtual Keyboard</title>
+  <meta name="description" content="A gothic notepad with an ouija board virtual keyboard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Inter:wght@400;600&family=Special+Elite&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- The Full Screen Notepad Application -->
+  <main id="notepad-app">
+    <header id="notepad-header">
+      <h1 id="title">Book of Shadows</h1>
+      <div id="controls">
+        <button id="btn-clear" class="control-btn" data-action="clear" title="Erase the page">BURN PAGE</button>
+      </div>
+    </header>
+    <div id="editor-container">
+      <textarea id="notepad-input" spellcheck="false" placeholder="Channel your thoughts from beyond..."></textarea>
+    </div>
+  </main>
+
+  <!-- The Standalone Virtual Keyboard Overlay -->
+  <aside id="keyboard-dock">
+    <div id="keyboard-wrapper">
+      <div id="board-container">
+        <img id="board-image" src="ouija.webp" alt="Ouija Virtual Keyboard" draggable="false">
+        <div id="hotspots"></div>
+        <div id="planchette">
+          <div id="planchette-lens"></div>
+        </div>
+      </div>
+
+      <!-- Supplementary Keyboard Controls -->
+      <div id="keyboard-controls">
+        <button class="kbd-btn" data-key="Space">SPACE</button>
+        <button class="kbd-btn" data-key="Backspace">⌫ DELETE</button>
+        <button class="kbd-btn" data-key="Enter">↵ ENTER</button>
+        <button id="btn-toggle-kbd" class="kbd-btn kbd-toggle">▼ HIDE</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Toggle button when hidden -->
+  <button id="btn-show-kbd" class="kbd-btn kbd-toggle hidden">▲ OUIJA KEYBOARD</button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

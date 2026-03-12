@@ -1,0 +1,282 @@
+/* ============================================
+   OUIJA NOTEPAD - STYLES
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0a0a09;
+  --bg-card: #151514;
+  --purple-mist: #8b7db8;
+  --gold-spirit: #c9a84c;
+  --gold-glow: rgba(201, 168, 76, 0.4);
+  --bone-white: #e1dcc9;
+  --text-dim: #6a6270;
+  --planchette-border: rgba(201, 168, 76, 0.6);
+  --transition-speed: 0.5s;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-dark);
+  color: var(--bone-white);
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- NOTEPAD AREA (TOP) ---- */
+
+#notepad-app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(139, 125, 184, 0.05) 0%, transparent 60%);
+  position: relative;
+}
+
+#notepad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(139, 125, 184, 0.15);
+  padding-bottom: 10px;
+}
+
+#title {
+  font-family: 'Creepster', cursive;
+  font-size: 2.2rem;
+  color: var(--gold-spirit);
+  text-shadow: 0 0 15px var(--gold-glow);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+#editor-container {
+  flex: 1;
+  position: relative;
+}
+
+#notepad-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  color: var(--bone-white);
+  font-family: 'Special Elite', monospace;
+  font-size: 1.4rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(225, 220, 201, 0.2);
+}
+
+#notepad-input::placeholder {
+  color: rgba(225, 220, 201, 0.2);
+}
+
+/* ---- KEYBOARD DOCK (BOTTOM) ---- */
+
+#keyboard-dock {
+  background: var(--bg-card);
+  border-top: 2px solid rgba(201, 168, 76, 0.2);
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+  max-height: 45vh;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#keyboard-dock.hidden {
+  transform: translateY(100%);
+}
+
+#keyboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-height: 100%;
+}
+
+#board-container {
+  position: relative;
+  display: inline-block;
+  height: calc(45vh - 70px);
+  /* Leave room for buttons */
+}
+
+#board-image {
+  height: 100%;
+  width: auto;
+  border-radius: 8px;
+  box-shadow:
+    0 0 30px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#hotspots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* ---- HOTSPOT ---- */
+
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.hotspot:hover {
+  background: rgba(201, 168, 76, 0.15);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
+}
+
+.hotspot.pressed {
+  animation: hotspotFlash 0.3s ease-out;
+}
+
+@keyframes hotspotFlash {
+  0% {
+    background: rgba(201, 168, 76, 0.6);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.8);
+  }
+
+  100% {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+/* ---- PLANCHETTE ---- */
+
+#planchette {
+  position: absolute;
+  /* Size connects to the height, we'll use % so it scales with image */
+  width: 6%;
+  height: 10%;
+  z-index: 3;
+  pointer-events: none;
+  transition:
+    left var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    top var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Translate such that the planchette lens lands on the target coordinate */
+  /* The lens is near the top of the planchette. If we want the lens at (0,0), we offset the planchette up and left */
+  transform: translate(-50%, -30%);
+  opacity: 0;
+}
+
+#planchette.visible {
+  opacity: 1;
+}
+
+#planchette::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%,
+      rgba(201, 168, 76, 0.2) 0%,
+      rgba(139, 125, 184, 0.1) 50%,
+      transparent 100%);
+  border: 2px solid var(--planchette-border);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  box-shadow:
+    0 0 15px var(--gold-glow),
+    inset 0 0 10px rgba(201, 168, 76, 0.2);
+}
+
+#planchette-lens {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 168, 76, 0.8);
+  background: rgba(201, 168, 76, 0.1);
+  box-shadow:
+    0 0 10px rgba(201, 168, 76, 0.4),
+    inset 0 0 6px rgba(201, 168, 76, 0.2);
+}
+
+/* ---- CONTROLS ---- */
+
+button {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 8px 16px;
+  border: 1px solid rgba(139, 125, 184, 0.3);
+  border-radius: 6px;
+  background: rgba(139, 125, 184, 0.08);
+  color: var(--purple-mist);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: rgba(139, 125, 184, 0.2);
+  border-color: rgba(139, 125, 184, 0.5);
+  color: var(--bone-white);
+  box-shadow: 0 0 15px rgba(139, 125, 184, 0.2);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+#keyboard-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.kbd-toggle {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+#btn-show-kbd {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(201, 168, 76, 0.15);
+  border-color: rgba(201, 168, 76, 0.4);
+  color: var(--gold-spirit);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+#btn-show-kbd.hidden {
+  display: none;
+}
