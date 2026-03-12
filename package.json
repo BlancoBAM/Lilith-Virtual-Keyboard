@@ -1,22 +1,22 @@
 {
   "name": "lilith-notepad",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple text editor for Lilith Linux",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlancoBAM/Lilith-Virtual-Keyboard.git"
+    "url": "git+https://github.com/BlancoBAM/Lilith-Notepad.git"
   },
-  "keywords": [],
+  "keywords": ["lilith", "linux", "text-editor", "tauri"],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/BlancoBAM/Lilith-Virtual-Keyboard/issues"
+    "url": "https://github.com/BlancoBAM/Lilith-Notepad/issues"
   },
-  "homepage": "https://github.com/BlancoBAM/Lilith-Virtual-Keyboard#readme",
+  "homepage": "https://github.com/BlancoBAM/Lilith-Notepad#readme",
   "devDependencies": {
     "@tauri-apps/cli": "^2.10.1"
   }
