@@ -13,23 +13,29 @@ Lilith Notepad transforms your browser into an atmospheric, dark-themed writing 
 - **Burn Page Protocol:** Instantly clear your thoughts and local storage with the confirmation-gated "Burn Page" capability.
 
 ## Installation & Usage
-This is a zero-dependency Vanilla Web application (HTML/CSS/JS).
+This application is now compiled as a native Linux desktop application powered by **Tauri**, providing excellent performance and avoiding the need for a web browser entirely.
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/BlancoBAM/Lilith-Notepad.git
    cd Lilith-Notepad
    ```
-2. You can open `index.html` directly in any modern web browser, or launch it through a local development server:
+
+2. To run the app in development mode using Tauri:
    ```bash
-   python3 -m http.server 8080
+   npm install
+   npm run tauri dev
    ```
-   Then navigate to `http://localhost:8080`.
+
+3. To build the release packages (Debian, RPM, AppImage) natively:
+   ```bash
+   npm run tauri build
+   ```
+   *The standalone `.AppImage` and `.deb` installers will be generated in `src-tauri/target/release/bundle/`.*
 
 ## Built With
-- **UI Structure:** HTML5
-- **Styling:** Vanilla CSS3 (CSS Variables, Flexbox, Keyframe Animations)
-- **Logic:** Vanilla JavaScript (LocalStorage API, CSSOM Manipulation)
+- **Frontend UI:** HTML5 & Vanilla JS/CSS
+- **Desktop Backend:** Tauri (Rust & WebKit2GTK)
 
 ## License
 MIT License

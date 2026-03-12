@@ -1,0 +1,23 @@
+{
+  "name": "lilith-notepad",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlancoBAM/Lilith-Virtual-Keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlancoBAM/Lilith-Virtual-Keyboard/issues"
+  },
+  "homepage": "https://github.com/BlancoBAM/Lilith-Virtual-Keyboard#readme",
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.1"
+  }
+}
